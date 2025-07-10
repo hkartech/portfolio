@@ -25,21 +25,23 @@ const dmMono = DM_Mono({
   variable: '--font-dm-mono',
 })
 
+// ✅ Correct props type (not a Promise)
 type Props = {
   params: {
     slug: string
   }
 }
 
-export function generateStaticParams() {
+// ✅ Generate static paths
+export function generateStaticParams(): { slug: string }[] {
   return projects.map((project) => ({
     slug: project.slug,
   }))
 }
 
-
-const CaseStudyPage = async ({ params }: Props) => {
-  const { slug } = params // ✅ This is correct
+// ✅ Single default export — correct Next.js format
+export default async function CaseStudyPage({ params }: Props) {
+  const { slug } = params
   const project = projects.find((p) => p.slug === slug)
 
   if (!project) return notFound()
@@ -165,5 +167,3 @@ const CaseStudyPage = async ({ params }: Props) => {
     </main>
   )
 }
-
-export default CaseStudyPage
