@@ -39,7 +39,7 @@ export function generateStaticParams() {
 
 
 const CaseStudyPage = async ({ params }: Props) => {
-  const { slug } = params // ✅ DO NOT use `await` here
+  const { slug } = params // ✅ This is correct
   const project = projects.find((p) => p.slug === slug)
 
   if (!project) return notFound()
