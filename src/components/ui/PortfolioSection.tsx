@@ -2,17 +2,18 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Eye, X } from 'lucide-react'
+import { Eye, X, SquareArrowOutUpRight } from 'lucide-react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Card, CardContent } from "@/components/ui/card"
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { motion } from 'framer-motion'
+import { Button } from "@/components/ui/button"
+
 import { Montserrat, Raleway, DM_Mono, DM_Sans } from 'next/font/google'
-import { projects } from '@/app/data/projects'
-import { Button } from "@/components/ui/button";
-import { SquareArrowOutUpRight } from "lucide-react";
-import Link from 'next/link'
+import { projectCards } from '@/app/data/projectCards' // ✅ CORRECTED CASE!
 
 export const montserrat = Montserrat({
   subsets: ['latin'],
@@ -45,51 +46,21 @@ type Project = {
   imgs: string[]
 }
 
-const graphicProjects: Project[] = Array.from({ length: 26 }, (_, i) => {
-  const id = `g${i + 1}`
-  return {
-    id,
-    title: `Graphic Design #${i + 1}`,
-    description: 'Creative design crafted using Illustrator.',
-    imgs: [`/Logos/Image-${i + 1}.png`],
-  }
-})
-
-const uiuxProjects: Project[] = [
-  {
-    id: 'u1',
-    title: 'Client Portfolio',
-    description: 'Hasnain Khan',
-    imgs: ['/Thumbnails/Thumbnail-1.png'],
-  },
-  {
-    id: 'u2',
-    title: 'Shopify CMS Dashboard',
-    description: 'Hasnain Khan',
-    imgs: ['/uiux2.png'],
-  },
-  {
-    id: 'u3',
-    title: 'Mobile Finance Tracker',
-    description: 'Hasnain Khan',
-    imgs: ['/uiux3.png'],
-  },
-  {
-    id: 'u4',
-    title: 'Modern Blog UI',
-    description: 'Hasnain Khan',
-    imgs: ['/uiux4.png'],
-  },
-]
+const graphicProjects: Project[] = Array.from({ length: 26 }, (_, i) => ({
+  id: `g${i + 1}`,
+  title: `Graphic Design #${i + 1}`,
+  description: 'Creative design crafted using Illustrator.',
+  imgs: [`/Logos/Image-${i + 1}.png`],
+}))
 
 export const PortfolioSection = () => {
   const [activeProj, setActiveProj] = useState<Project | null>(null)
-  const [activeTab, setActiveTab] = useState("uiux") // ✅ Set default tab
+  const [activeTab, setActiveTab] = useState("uiux")
 
   return (
     <main className="py-16 px-4">
       <section id="portfolio" className="max-w-5xl mx-auto">
-        <Tabs value={activeTab} onValueChange={setActiveTab}> {/* ✅ controlled */}
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
           <div className="flex justify-center mb-8">
             <TabsList>
               <TabsTrigger value="uiux">UI/UX Design</TabsTrigger>
@@ -97,7 +68,54 @@ export const PortfolioSection = () => {
               <TabsTrigger value="ai">AI-Built Projects</TabsTrigger>
             </TabsList>
           </div>
-          {/* Graphic Design Tab Content */}
+
+          {/* UI/UX Design Cards */}
+          <TabsContent value="uiux">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {projectCards.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  <Card className="group overflow-hidden transition-shadow border py-0 shadow-none hover:shadow-lg pb-4">
+                    <div className="relative w-full h-48 overflow-hidden">
+                      <Image
+                        src={project.imgs[0]}
+                        alt={project.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        priority={index === 0}
+                        className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/20 z-10" />
+                    </div>
+                    <CardContent className="space-y-2">
+                      <h3 className={`text-xl font-semibold ${raleway.className}`}>
+                        {project.title}
+                      </h3>
+                      <p className={`text-md text-muted-foreground mb-3 ${montserrat.className}`}>
+                        {project.description}
+                      </p>
+                      <Link href={`/Projects/${project.id}`} className="group">
+                        <Button
+                          variant="link"
+                          className={`p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer ${montserrat.className}`}
+                        >
+                          View Project
+                          <SquareArrowOutUpRight className="ml-1 w-4 h-4" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* Graphic Design Tab */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -138,67 +156,13 @@ export const PortfolioSection = () => {
             </TabsContent>
           </motion.div>
 
-          {/* UI/UX Design Tab Content */}
-
-          <TabsContent value="uiux">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.slug || index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <Card className="group overflow-hidden transition-shadow border py-0 shadow-none hover:shadow-lg pb-4">
-                    {/* Image with hover scale */}
-                    <div className="relative w-full h-48 overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                        priority={index === 0}
-                        className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/2 z-10" />
-                    </div>
-
-                    <CardContent className="space-y-2">
-                      <h3 className={`text-xl font-semibold ${raleway.className}`}>
-                        {project.title}
-                      </h3>
-                      <p className={`text-md text-muted-foreground ${montserrat.className}`}>
-                        {project.role}
-                      </p>
-                      <p className={`text-md text-muted-foreground mb-3 ${montserrat.className}`}>
-                        {project.description}
-                      </p>
-
-                      <Link href={`/projects/${project.slug}`} className="group">
-                        <Button
-                          variant="link"
-                          className={`p-0! text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer ${montserrat.className}`}
-                        >
-                          View Project
-                          <SquareArrowOutUpRight />
-                        </Button>
-                      </Link>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </TabsContent>
-
-
           {/* AI Projects Placeholder */}
           <TabsContent value="ai">
             <p className="text-center text-muted-foreground">AI-Built Projects tab coming soon.</p>
           </TabsContent>
         </Tabs>
 
-        {/* Modal */}
+        {/* Modal for Graphic Design Preview */}
         {activeProj && (
           <Dialog open onOpenChange={() => setActiveProj(null)}>
             <DialogContent
