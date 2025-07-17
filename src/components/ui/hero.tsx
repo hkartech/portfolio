@@ -4,6 +4,9 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { DM_Sans, Raleway, Montserrat, DM_Mono } from 'next/font/google'
 import { motion } from 'framer-motion'
+import { MessageCircle } from 'lucide-react'
+
+
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -100,9 +103,16 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <Button className={`rounded-full px-8 py-6 text-white hover:bg-blue-400 transition-colors dark:hover:text-white dark:text-zinc-950 ${raleway.className}`}>
-          Connect
-        </Button>
+        <a
+  href="https://wa.me/message/PGKCBV432U3ZO1"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button className={`rounded-full !px-6 py-6 text-sm sm:text-md text-white hover:bg-blue-400 transition-colors dark:hover:text-white dark:text-zinc-950 ${raleway.className}`}>
+      <MessageCircle />
+    Let's Chat
+  </Button>
+</a>
       </motion.div>
     </motion.section>
   )

@@ -66,7 +66,7 @@ export const RecentProjects = () => {
                 <Link href={`/Projects/${project.id}`} className="group">
                   <Button
                     variant="link"
-                    className={`p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer ${montserrat.className}`}
+                    className={`!p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer ${montserrat.className}`}
                   >
                     View Project
                     <SquareArrowOutUpRight />

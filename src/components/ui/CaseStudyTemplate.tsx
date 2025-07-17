@@ -54,11 +54,11 @@ export default function CaseStudyTemplate({ project }: Props) {
     <main className="py-12 px-4">
       <section className="max-w-5xl mx-auto">
         {/* 👉 CTA Section */}
-        {project.showCTA && (
+        {project.title && (
           <div className="sm:flex sm:justify-between mb-6">
             <div className="mb-6">
               <h2 className={`text-3xl font-bold mb-3 ${raleway.className}`}>
-                {project.ctaHeading}
+                {project.title}
               </h2>
               <Badge
                 variant="outline"
@@ -76,7 +76,7 @@ export default function CaseStudyTemplate({ project }: Props) {
                 <Button
                   className={`rounded-full sm:px-8 sm:py-6 text-sm py-4 px-4 sm:text-[1rem] hover:bg-blue-400 transition-colors dark:hover:text-white cursor-pointer ${raleway.className}`}
                 >
-                  Live Preview
+                  {project.ctaHeading}
                 </Button>
               </Link>
             )}
@@ -90,7 +90,7 @@ export default function CaseStudyTemplate({ project }: Props) {
             alt={project.title}
             width={1000}
             height={1000}
-            className="rounded-lg mb-8 object-cover w-full border"
+            className="rounded-[6px] sm:rounded-lg mb-8 object-cover w-full border"
             priority
           />
         ) : null}

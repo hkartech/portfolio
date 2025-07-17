@@ -13,37 +13,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
 import { Montserrat, Raleway, DM_Mono, DM_Sans } from 'next/font/google'
-import { projectCards } from '@/app/data/projectCards' // ✅ CORRECTED CASE!
+import { projectCards } from '@/app/data/projectCards'
 
-export const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-montserrat',
-})
-
-export const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-raleway',
-})
-
-export const dmMono = DM_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-dm-mono',
-})
-
-export const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-dm-sans',
-})
+export const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-montserrat' })
+export const raleway = Raleway({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-raleway' })
+export const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-dm-mono' })
+export const dmSans = DM_Sans({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-dm-sans' })
 
 type Project = {
   id: string
   title: string
   description: string
   imgs: string[]
+  category: 'uiux' | 'graphic' | 'ai'
 }
 
 const graphicProjects: Project[] = Array.from({ length: 26 }, (_, i) => ({
@@ -51,11 +33,15 @@ const graphicProjects: Project[] = Array.from({ length: 26 }, (_, i) => ({
   title: `Graphic Design #${i + 1}`,
   description: 'Creative design crafted using Illustrator.',
   imgs: [`/Logos/Image-${i + 1}.png`],
+  category: 'graphic',
 }))
 
-export const PortfolioSection = () => {
+const PortfolioSection = () => {
   const [activeProj, setActiveProj] = useState<Project | null>(null)
   const [activeTab, setActiveTab] = useState("uiux")
+
+  const uiuxProjects = projectCards.filter(p => p.category === 'uiux')
+  const aiProjects = projectCards.filter(p => p.category === 'ai')
 
   return (
     <main className="py-16 px-4">
@@ -72,7 +58,7 @@ export const PortfolioSection = () => {
           {/* UI/UX Design Cards */}
           <TabsContent value="uiux">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {projectCards.map((project, index) => (
+              {uiuxProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -102,7 +88,7 @@ export const PortfolioSection = () => {
                       <Link href={`/Projects/${project.id}`} className="group">
                         <Button
                           variant="link"
-                          className={`p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer ${montserrat.className}`}
+                          className={`!p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer ${montserrat.className}`}
                         >
                           View Project
                           <SquareArrowOutUpRight className="ml-1 w-4 h-4" />
@@ -116,12 +102,7 @@ export const PortfolioSection = () => {
           </TabsContent>
 
           {/* Graphic Design Tab */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
             <TabsContent value="graphic">
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 {graphicProjects.map((p, i) => (
@@ -156,23 +137,60 @@ export const PortfolioSection = () => {
             </TabsContent>
           </motion.div>
 
-          {/* AI Projects Placeholder */}
+          {/* AI Projects */}
           <TabsContent value="ai">
-            <p className="text-center text-muted-foreground">AI-Built Projects tab coming soon.</p>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {aiProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  <Card className="group overflow-hidden transition-shadow border py-0 shadow-none hover:shadow-lg pb-4">
+                    <div className="relative w-full h-48 overflow-hidden">
+                      <Image
+                        src={project.imgs[0]}
+                        alt={project.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        priority={index === 0}
+                        className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/20 z-10" />
+                    </div>
+                    <CardContent className="space-y-2">
+                      <h3 className={`text-xl font-semibold ${raleway.className}`}>
+                        {project.title}
+                      </h3>
+                      <p className={`text-md text-muted-foreground mb-3 ${montserrat.className}`}>
+                        {project.description}
+                      </p>
+                      <Link href={`/Projects/${project.id}`} className="group">
+                        <Button
+                          variant="link"
+                          className={`!p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer ${montserrat.className}`}
+                        >
+                          View Project
+                          <SquareArrowOutUpRight className="ml-1 w-4 h-4" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </TabsContent>
         </Tabs>
 
-        {/* Modal for Graphic Design Preview */}
+        {/* Modal Preview for Graphic Projects */}
         {activeProj && (
           <Dialog open onOpenChange={() => setActiveProj(null)}>
-            <DialogContent
-              className="w-sm sm:max-w-lg p-0 overflow-hidden rounded-lg mx-auto sm:w-[500px]"
-              showCloseButton={false}
-            >
+            <DialogContent className="w-sm sm:max-w-lg p-0 overflow-hidden rounded-lg mx-auto sm:w-[500px]" showCloseButton={false}>
               <VisuallyHidden>
                 <DialogTitle>{activeProj.title}</DialogTitle>
               </VisuallyHidden>
-
               <div className="relative w-full h-[400px] sm:h-[500px]">
                 <Image
                   src={activeProj.imgs[0]}
