@@ -51,28 +51,21 @@ export const projectCards = [
     imgs: ["/Thumbnails/kelinky-app.png"],
     category: "uiux",
   },
+
   {
     id: "checkout-catalyst",
     title: "Checkout Catalyst Shopify",
     description:
-      "Optimized Shopify checkout flow with advanced upsell and tracking integrations.",
+      "Checkout Catalyst helps to create a seamless checkout experience to boost your online store revenue and customer satisfaction.",
     imgs: ["/Thumbnails/Checkout-catalyst-app.png"],
     category: "uiux",
   },
   {
-    id: "unumpay-app",
+    id: "unum-pay-shopify-app",
     title: "UnumPay Shopify App",
     description:
       "Payment integration app designed for cross-border Shopify merchants.",
     imgs: ["/Thumbnails/Unumpay-payment-app.png"],
-    category: "uiux",
-  },
-  {
-    id: "checkout-flaw",
-    title: "Checkout Flaw Shopify App",
-    description:
-      "Troubleshooting tool for identifying and fixing Shopify checkout flaws.",
-    imgs: ["/Thumbnails/Checkout-app.png"],
     category: "uiux",
   },
 

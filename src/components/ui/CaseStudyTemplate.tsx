@@ -31,6 +31,7 @@ type ProjectType = {
   id: string
   title: string
   image: string
+  badgeLabel?: string
   caseStudyImage?: string
   showCTA?: boolean
   ctaHeading?: string
@@ -60,12 +61,14 @@ export default function CaseStudyTemplate({ project }: Props) {
               <h2 className={`text-3xl font-bold mb-3 ${raleway.className}`}>
                 {project.title}
               </h2>
-              <Badge
-                variant="outline"
-                className={`text-sm ${dmMono.className}`}
-              >
-                Published
-              </Badge>
+              {project.badgeLabel && (
+                <Badge
+                  variant="outline"
+                  className={`text-sm ${dmMono.className}`}
+                >
+                  {project.badgeLabel}
+                </Badge>
+              )}
             </div>
             {project.ctaLink && (
               <Link
