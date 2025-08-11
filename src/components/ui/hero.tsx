@@ -44,7 +44,7 @@ const Hero = () => {
 
       {/* Animated Profile Image */}
       <motion.img
-        src="/profile image.png"
+        src="/profile-image.png"
         alt="Hasnain Avatar"
         className="rounded-full mx-auto mb-5 w-36 sm:w-48"
         animate={{ y: [0, -15, 0] }}
