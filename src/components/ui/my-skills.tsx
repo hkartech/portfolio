@@ -45,7 +45,7 @@ const skills = [
 
 const MySkills = () => {
   return (
-    <main className="py-12 px-4">
+    <main className="py-12 px-4 bg-transparent">
       <section className="max-w-5xl mx-auto">
         <h2 className={`text-3xl font-bold text-center mb-2 ${raleway.className}`}>
           My Skills

@@ -80,8 +80,7 @@ export const RecentProjects = () => {
         <div className="flex justify-center">
           <Link href="/portfolio">
             <Button
-              variant="outline"
-              className={`px-6 py-6 text-sm sm:text-md rounded-full dark:hover:bg-blue-400 transition-colors hover:bg-blue-400 hover:text-white ${montserrat.className}`}
+              className={`px-6 py-6 text-sm sm:text-md rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden z ${montserrat.className}`}
             >
               View all work
             </Button>

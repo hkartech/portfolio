@@ -6,6 +6,7 @@ import Footer from '@/components/ui/footer';
 import WhatIDo from '@/components/ui/whatido';
 import RecentProjects from '@/components/ui/RecentProjects';
 import ContactSection2 from '@/components/ui/ContactSection2';
+import AboutMeFront from '@/components/ui/AboutMeFront';
 
 export default function Home() {
     return (
@@ -15,6 +16,7 @@ export default function Home() {
             <MySkills />
             <WhatIDo />
             <RecentProjects />
+            <AboutMeFront/>
             <ContactSection2 />
             <Footer />
         </main>

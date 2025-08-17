@@ -41,11 +41,11 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex space-x-6 items-center">
-          <Link href="/" className={monstserrat.className}>Home</Link>
-          <Link href="/about" className={raleway.className}>About Me</Link>
-          <Link href="/#projects"onClick={handleLinkClick} className={raleway.className}>Projects</Link>
-          <Link href="/blogs" className={raleway.className}>Blog</Link>
-          <Link href="/#contact" onClick={handleLinkClick} className={`${raleway.className} hover:text-primary transition-colors`}>Contact</Link>
+          <Link href="/" className={`${raleway.className} transition-colors hover:text-blue-400 text-base`}>Home</Link>
+          <Link href="/#aboutfront" className={`${raleway.className} transition-colors hover:text-blue-400 text-base`}>About Me</Link>
+          <Link href="/#projects"onClick={handleLinkClick} className={`${raleway.className} transition-colors hover:text-blue-400 text-base`}>Projects</Link>
+          <Link href="/blogs" className={`${raleway.className} transition-colors hover:text-blue-400 text-base`}>Blog</Link>
+          <Link href="/#contact" onClick={handleLinkClick} className={`${raleway.className} transition-colors hover:text-blue-400 text-base`}>Contact</Link>
           <ModeToggle />
         </div>
 
