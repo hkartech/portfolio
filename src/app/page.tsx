@@ -1,23 +1,25 @@
 import React from 'react';
 import Hero from '@/components/ui/hero';
 import RibbonBar from '@/components/ui/ribbon-bar';
-import MySkills from '@/components/ui/my-skills';
+import Technologies from '@/components/ui/technologies';
 import Footer from '@/components/ui/footer';
 import WhatIDo from '@/components/ui/whatido';
-import RecentProjects from '@/components/ui/RecentProjects';
-import ContactSection2 from '@/components/ui/ContactSection2';
-import AboutMeFront from '@/components/ui/AboutMeFront';
+import ContactSection2 from '@/components/ui/contactSection2';
+import Vision from '@/components/ui/vision';
+import MetrixStatics from '@/components/ui/metrixstatics'
+import BannerCTA from '@/components/bannercta';
 
 export default function Home() {
     return (
         <main>
             <RibbonBar />
             <Hero />
-            <MySkills />
+            <MetrixStatics/>
+            <Technologies />
             <WhatIDo />
-            <RecentProjects />
-            <AboutMeFront/>
-            <ContactSection2 />
+            <Vision/>
+            <BannerCTA/>
+            <ContactSection2/>
             <Footer />
         </main>
     );

@@ -1,26 +1,39 @@
 'use client'
 
 import { Card, CardContent } from "@/components/ui/card"
-import { DM_Sans, Raleway, Montserrat } from "next/font/google"
 import { motion } from "framer-motion"
-
-const dmSans = DM_Sans({
-    subsets: ["latin"],
-    weight: ["400", "500", "700"],
-    variable: "--font-dm-sans",
-})
+import { Raleway, Geist, Montserrat, DM_Sans, Poppins } from 'next/font/google'
 
 const raleway = Raleway({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-raleway",
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-raleway',
 })
+
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  weight: ["400", "500", "600", "700"], // optional, if you want multiple weights
+});
 
 const montserrat = Montserrat({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
     variable: "--font-montserrat",
-})
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-dm-sans",
+});
+
+export const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"], // choose the weights you need
+});
+
+
 
 const services = [
     {
@@ -50,13 +63,13 @@ const services = [
 ];
 export default function WhatIDo() {
     return (
-        <main className="py-12 px-4">
+        <main className="py-16 px-4">
             <section className="max-w-5xl mx-auto" id="services">
                 <div>
-                    <h2 className={`text-3xl font-bold text-center mb-2 ${raleway.className}`}>
+                    <h2 className={`text-3xl font-bold text-center mb-2 ${dmSans.className}`}>
                         What I Do
                     </h2>
-                    <p className={`text-center text-muted-foreground mb-14 text-md sm:text-lg ${montserrat.className}`}>
+                    <p className={`text-center text-muted-foreground mb-14 text-md sm:text-lg font-light ${poppins.className}  text-zinc-600 dark:text-zinc-400`}>
                         I blend design, development, and AI to create modern
                         <br className="hidden sm:block" />
                         , high-performing digital experiences.
@@ -71,12 +84,12 @@ export default function WhatIDo() {
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                             >
-                                <Card className="group hover:shadow-lg shadow-none hover:bg-blue-400 transition-all duration-300 rounded-md overflow-hidden py-2">
-                                    <CardContent className="p-6 text-center">
-                                        <h3 className={`text-xl font-semibold mb-2 text-left group-hover:text-white ${raleway.className}`}>
+                                <Card className="group hover:shadow-lg shadow-none hover:bg-blue-400 transition-all duration-300 rounded-md overflow-hidden">
+                                    <CardContent className="text-center">
+                                        <h3 className={`text-xl font-semibold mb-2 text-left group-hover:text-white ${dmSans.className}`}>
                                             {item.title}
                                         </h3>
-                                        <p className={`text-md text-muted-foreground text-left group-hover:text-white ${montserrat.className}`}>
+                                        <p className={`text-md text-muted-foreground text-left group-hover:text-white font-light ${poppins.className}`}>
                                             {item.desc}
                                         </p>
                                     </CardContent>

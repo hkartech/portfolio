@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Loader from "@/components/ui/Loader";
-import Navbar from "@/components/ui/Navbar";
+import Navbar from "@/components/ui/navbar";
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);

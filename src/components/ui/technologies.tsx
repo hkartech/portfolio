@@ -1,26 +1,39 @@
 'use client'
 
 import { Card, CardContent } from "@/components/ui/card"
-import { DM_Sans, Raleway, Montserrat } from "next/font/google"
 import { motion } from "framer-motion"
+import { Raleway, Geist, Montserrat, DM_Sans, Poppins } from 'next/font/google'
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-raleway',
+})
+
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  weight: ["400", "500", "600", "700"], // optional, if you want multiple weights
+});
+
+const montserrat = Montserrat({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-montserrat",
+});
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-dm-sans",
-})
+});
 
-const raleway = Raleway({
+export const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-raleway",
-})
+  weight: ["300", "400", "500", "600", "700"], // choose the weights you need
+});
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-montserrat",
-})
+
 
 const skills = [
   { name: "Figma", img: "/Figma.svg" },
@@ -45,12 +58,12 @@ const skills = [
 
 const MySkills = () => {
   return (
-    <main className="py-12 px-4 bg-transparent">
+    <main className="py-16 px-4 bg-transparent">
       <section className="max-w-5xl mx-auto">
-        <h2 className={`text-3xl font-bold text-center mb-2 ${raleway.className}`}>
-          My Skills
+        <h2 className={`text-3xl font-bold text-center mb-2 ${dmSans.className}`}>
+          Technologies
         </h2>
-        <p className={`text-center text-md mb-14 sm:text-lg ${montserrat.className}`}>
+        <p className={`text-center text-md mb-14 sm:text-lg font-light ${poppins.className} text-zinc-600 dark:text-zinc-400`}>
           These are the technologies and tools I work with:
         </p>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3">

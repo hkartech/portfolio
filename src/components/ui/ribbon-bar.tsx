@@ -30,7 +30,16 @@ const RibbonBar = () => {
               key={i}
               className={`mx-8 text-xs sm:text-base tracking-widest uppercase ${dmMono.className}`}
             >
-              Born to create. Built to code
+              Born to Design. Built to inspire
+            </span>
+          ))}
+          {/* duplicate for smooth infinite scroll */}
+          {[...Array(15)].map((_, i) => (
+            <span
+              key={`dup-${i}`}
+              className={`mx-8 text-xs sm:text-base tracking-widest uppercase ${dmMono.className}`}
+            >
+              Born to Design. Built to inspire
             </span>
           ))}
         </div>
@@ -46,15 +55,15 @@ const RibbonBar = () => {
         .track {
           display: flex;
           width: max-content;
-          animation: scroll 30s linear infinite;
+          animation: scroll 70s linear infinite;
         }
 
         @keyframes scroll {
           0% {
-            transform: translateX(-50%);
+            transform: translateX(0);
           }
           100% {
-            transform: translateX(0%);
+            transform: translateX(-50%);
           }
         }
       `}</style>

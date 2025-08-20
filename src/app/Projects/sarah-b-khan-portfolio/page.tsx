@@ -1,7 +1,7 @@
     // ✅ src/app/projects/personal-portfolio/page.tsx
 
     import { caseStudyProjects } from '@/app/data/caseStudyProjects'
-    import CaseStudyTemplate from '@/components/ui/CaseStudyTemplate'
+    import CaseStudyTemplate from '@/components/ui/caseStudyTemplate'
 
     export default function SarahBKhanPortolio() {
     const project = caseStudyProjects.find(p => p.id === 'sarah-b-khan-portfolio')

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import AppWrapper from "@/components/ui/AppWrapper";
+import AppWrapper from "@/components/ui/appwrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HK Artech Portfolio",
+  title: "HK Artech",
   description: "Portfolio site for Hasnain Khan",
+  icons: {
+    icon: "/browser-tab-image.png", // place your favicon file in the public folder
+  },
 };
+
 
 export default function RootLayout({
   children,
@@ -25,19 +29,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="light">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Gradient Background */}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
+      >
+        {/* Background */}
         <div className="fixed inset-0 -z-50 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 via-purple-50/50 to-pink-50/50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-pink-900/20" />
-          <div className="absolute left-1/4 top-1/3 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 dark:bg-blue-600" />
-          <div className="absolute right-1/4 bottom-1/3 w-64 h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 dark:bg-purple-600" />
+          {/* Base background */}
+          <div className="absolute inset-0 bg-white dark:bg-black" />
+
+          {/* Top half-circle blurred spotlight */}
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
+                       rounded-b-[100%] 
+                       bg-gradient-to-b from-green-400/60 to-transparent 
+                       dark:from-sky-500/60 dark:to-transparent 
+                       filter blur-[200px] opacity-90"
+          />
         </div>
 
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <AppWrapper>
-            {children}
-          </AppWrapper>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AppWrapper>{children}</AppWrapper>
         </ThemeProvider>
       </body>
     </html>

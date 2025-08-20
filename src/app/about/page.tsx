@@ -1,4 +1,4 @@
-import AboutMe from '@/components/ui/AboutMe';
+import AboutMe from '@/components/ui/aboutme';
 import Education from '@/components/ui/Education';
 import Experience from '@/components/ui/Experience';
 import Footer from '@/components/ui/footer';
