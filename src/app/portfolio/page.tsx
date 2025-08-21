@@ -1,4 +1,4 @@
-import PortfolioSection from '@/components/ui/portfolioSection'
+import PortfolioSection from '@/components/ui/PortfolioSection'
 import React from 'react'
 
 const PortfolioPage = () => {
