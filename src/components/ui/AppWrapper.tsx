@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { useEffect, useState } from "react";
 import Loader from "@/components/ui/Loader";
-import Navbar from "@/components/ui/navbar";
+import Navbar from "@/components/ui/Navbar";
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
