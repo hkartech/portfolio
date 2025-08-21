@@ -31,7 +31,7 @@ const poppins = Poppins({
 
 const Vision = () => {
     return (
-        <section id="vision" className="pb-16 pt-8 sm:pt-16 px-4 md:px-6">
+        <section id="vision" className="pb-16 pt-8 sm:pt-16 px-4 md:px-6 border-b">
             <div className="max-w-5xl mx-auto grid md:grid-cols-1 gap-5 items-center">
                 {/* Animated Profile Image */}
                 <motion.div className="relative">

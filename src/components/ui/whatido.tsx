@@ -63,7 +63,7 @@ const services = [
 ];
 export default function WhatIDo() {
     return (
-        <main className="py-16 px-4">
+        <main className="py-16 px-4 border-b">
             <section className="max-w-5xl mx-auto" id="services">
                 <div>
                     <h2 className={`text-3xl font-bold text-center mb-2 ${dmSans.className}`}>

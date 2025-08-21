@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { Copy } from 'lucide-react'
 import { Montserrat, Raleway, DM_Sans } from 'next/font/google'
 
@@ -35,6 +36,28 @@ const socialLinks = [
 
 export default function ContactSection() {
   const [copiedField, setCopiedField] = useState<string | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
+  const [hasAnimated, setHasAnimated] = useState(false)
+
+  // Scroll / in-view trigger
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current || hasAnimated) return
+      const rect = ref.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight
+      if (rect.top <= windowHeight * 0.8 && rect.bottom >= windowHeight * 0.2) {
+        setHasAnimated(true)
+      }
+    }
+
+    // Check immediately if section is visible on load
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [hasAnimated])
 
   const handleCopy = async (text: string, type: string) => {
     try {
@@ -48,7 +71,6 @@ export default function ContactSection() {
         document.execCommand('copy')
         document.body.removeChild(textarea)
       }
-
       setCopiedField(type)
       setTimeout(() => setCopiedField(null), 2000)
     } catch (err) {
@@ -59,47 +81,57 @@ export default function ContactSection() {
 
   return (
     <main className="sm:py-12 bg-zinc-5 border-t border-b">
-      <section id="contact" className="w-full py-12 px-4 md:px-6">
-        <div className="max-w-5xl mx-auto md:col-span-2 space-y-6">
-
+      <section
+        id="contact"
+        ref={ref}
+        className="w-full py-12 px-4 md:px-6"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="max-w-5xl mx-auto md:col-span-2 space-y-6"
+        >
           <h2 className={`text-3xl font-bold mb-4 ${dmSans.className}`}>Let's Connect</h2>
-          <p className={` text-md sm:text-lg mb-6 ${montserrat.className}`}>
+          <p className={`text-md sm:text-lg mb-6 ${montserrat.className}`}>
             I would love to hear from you. Whether you have a question or just want to say hi, feel free to reach out anytime!
           </p>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={hasAnimated ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <h3 className={`text-lg font-medium mb-1 ${montserrat.className}`}>Email</h3>
             <div className="flex items-center gap-2">
               <p className={`text-md ${montserrat.className}`}>info.hkartech@gmail.com</p>
-              <button
-                onClick={() => handleCopy("info.hkartech@gmail.com", "email")}
-                title="Copy Email"
-              >
+              <button onClick={() => handleCopy("info.hkartech@gmail.com", "email")} title="Copy Email">
                 <Copy className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
               </button>
-              {copiedField === 'email' && (
-                <span className="text-xs text-muted-foreground">Copied!</span>
-              )}
+              {copiedField === 'email' && <span className="text-xs text-muted-foreground">Copied!</span>}
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={hasAnimated ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <h3 className={`text-lg font-medium mb-1 ${montserrat.className}`}>Phone</h3>
             <div className="flex items-center gap-2">
               <p className={`text-md ${montserrat.className}`}>+92 319 2418464</p>
-              <button
-                onClick={() => handleCopy("+92 319 2418464", "phone")}
-                title="Copy Phone"
-              >
+              <button onClick={() => handleCopy("+92 319 2418464", "phone")} title="Copy Phone">
                 <Copy className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
               </button>
-              {copiedField === 'phone' && (
-                <span className="text-xs text-muted-foreground">Copied!</span>
-              )}
+              {copiedField === 'phone' && <span className="text-xs text-muted-foreground">Copied!</span>}
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
             <h3 className={`text-lg font-medium mb-6 ${montserrat.className}`}>Follow Me On</h3>
             <div className="flex gap-4 items-center flex-wrap">
               {socialLinks.map((item, index) => (
@@ -116,8 +148,8 @@ export default function ContactSection() {
                 </a>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
     </main>
   )

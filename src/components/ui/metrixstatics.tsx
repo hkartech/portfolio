@@ -1,40 +1,20 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import CountUp from 'react-countup'
-import { Raleway, Geist, Montserrat, DM_Sans, Poppins } from 'next/font/google'
-
-const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-raleway',
-})
-
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"], // optional, if you want multiple weights
-});
-
-const montserrat = Montserrat({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-montserrat",
-});
+import { DM_Sans, Poppins } from 'next/font/google'
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-dm-sans",
-});
+})
 
 export const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // choose the weights you need
-});
-
-
+  weight: ["300", "400", "500", "600", "700"],
+})
 
 interface Metric {
   id: number
@@ -52,18 +32,31 @@ const metrics: Metric[] = [
 
 const MetricsBar = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref)
   const [hasAnimated, setHasAnimated] = useState(false)
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true) // only trigger once
+    const handleScroll = () => {
+      if (!ref.current || hasAnimated) return
+      const rect = ref.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight
+      // trigger when at least half visible
+      if (rect.top <= windowHeight * 0.8 && rect.bottom >= windowHeight * 0.2) {
+        setHasAnimated(true)
+      }
     }
-  }, [isInView, hasAnimated])
+
+    // check immediately in case it's already visible
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [hasAnimated])
 
   return (
     <section ref={ref} className="py-16 border-t border-b">
-      <div className="max-w-6xl mx-auto grid grid-cols sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
         {metrics.map((metric) => (
           <motion.div
             key={metric.id}

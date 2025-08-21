@@ -72,7 +72,7 @@ const Hero = () => {
 
         {/* Title */}
         <motion.h1
-          className={`text-[2.5rem] md:text-[4.5rem] font-bold mb-6 leading-none ${dmSans.className} bg-clip-text text-black dark:text-white`}
+          className={`text-[3.2rem] md:text-[4.5rem] font-bold mb-6 leading-none ${dmSans.className} bg-clip-text text-black dark:text-white`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}

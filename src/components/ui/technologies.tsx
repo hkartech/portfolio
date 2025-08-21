@@ -13,7 +13,7 @@ const raleway = Raleway({
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"], // optional, if you want multiple weights
+  weight: ["400", "500", "600", "700"],
 });
 
 const montserrat = Montserrat({
@@ -30,10 +30,8 @@ const dmSans = DM_Sans({
 
 export const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // choose the weights you need
+  weight: ["300", "400", "500", "600", "700"],
 });
-
-
 
 const skills = [
   { name: "Figma", img: "/Figma.svg" },
@@ -59,13 +57,30 @@ const skills = [
 const MySkills = () => {
   return (
     <main className="py-16 px-4 bg-transparent">
-      <section className="max-w-5xl mx-auto">
-        <h2 className={`text-3xl font-bold text-center mb-2 ${dmSans.className}`}>
+      <section className="max-w-5xl mx-auto text-center">
+        {/* Animated heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className={`text-3xl font-bold mb-2 ${dmSans.className}`}
+        >
           Technologies
-        </h2>
-        <p className={`text-center text-md mb-14 sm:text-lg font-light ${poppins.className} text-zinc-600 dark:text-zinc-400`}>
+        </motion.h2>
+
+        {/* Animated paragraph */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className={`text-md mb-14 sm:text-lg font-light ${poppins.className} text-zinc-600 dark:text-zinc-400`}
+        >
           These are the technologies and tools I work with:
-        </p>
+        </motion.p>
+
+        {/* Skills grid */}
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3">
           {skills.map((skill, index) => (
             <motion.div
@@ -103,4 +118,3 @@ const MySkills = () => {
 }
 
 export default MySkills
-
