@@ -59,13 +59,13 @@ const Navbar = () => {
           <span className={`text-2xl font-medium ${dmSans.className}`}>
             Hk Artech
           </span>
-        </Link>
+        </Link> 
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex space-x-6 items-center">
           <Link href="/" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Home</Link>
-          <Link href="/aboutme" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>About Me</Link>
-          <Link href="#vision" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Vision</Link>
+          <Link href="/about" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>About Me</Link>
+          <Link href="/#vision" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Vision</Link>
           <Link href="/blogs" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Blog</Link>
           <Link href="/resources" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Resources & Tools</Link>
           <Link href="/learninghub" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Learning Hub</Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
                 <SheetDescription asChild className="my-6">
                   <div className="flex flex-col items-center gap-6">
                     <Link href="/" className={`text-lg font-light ${poppins.className} hover:text-blue-400`} onClick={handleLinkClick}>Home</Link>
-                    <Link href="/aboutme" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>About Me</Link>
+                    <Link href="/about" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>About Me</Link>
                     <Link href="#vision" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>Vision</Link>
                     <Link href="/blogs" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>Blog</Link>
                     <Link href="/resources" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>Resources & Tools</Link>
