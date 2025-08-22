@@ -1,20 +1,20 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Raleway, Montserrat, DM_Mono } from 'next/font/google'
+import { Poppins, DM_Sans, DM_Mono } from 'next/font/google'
 import { Badge } from '@/components/ui/badge'
 import { GraduationCap, Calendar } from 'lucide-react'
 
-const raleway = Raleway({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-raleway',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
 })
 
-const montserrat = Montserrat({
+const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
-  variable: '--font-montserrat',
+  variable: '--font-dm-sans',
 })
 
 const dmMono = DM_Mono({
@@ -49,7 +49,7 @@ export default function EducationTimeline() {
     <section id="education" className="py-16 px-4">
       <div className="max-w-5xl mx-auto">
         <motion.h2
-          className={`text-3xl font-bold mb-12 text-center ${raleway.className}`}
+          className={`text-3xl font-bold mb-12 text-center ${dmSans.className}`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -77,14 +77,14 @@ export default function EducationTimeline() {
                   <div className="flex-shrink-0 h-9 w-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
                     <GraduationCap className="h-5 w-5" />
                   </div>
-                  <span className={`text-md sm:text-lg font-semibold ${montserrat.className}`}>
+                  <span className={`text-md sm:text-lg font-semibold ${poppins.className}`}>
                     {edu.institution}
                   </span>
                 </div>
 
                 {/* Degree and Date */}
                 <div>
-                  <h3 className={`text-md sm:text-lg font-medium ${raleway.className}`}>{edu.degree}</h3>
+                  <h3 className={`text-md sm:text-lg ${poppins.className}`}>{edu.degree}</h3>
                   <div className={`flex items-center gap-2 mt-1 text-sm text-muted-foreground ${dmMono.className}`}>
                     <Calendar className="h-4 w-4" />
                     <span>{edu.period}</span>

@@ -3,21 +3,21 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Raleway, Montserrat, DM_Mono } from 'next/font/google'
+import { DM_Sans, Poppins, DM_Mono } from 'next/font/google'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
-// Fonts
-const raleway = Raleway({
+// ✅ Fonts
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-raleway',
+  weight: ['400', '500', '700'],
+  variable: '--font-dm-sans',
 })
 
-const montserrat = Montserrat({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-montserrat',
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-poppins',
 })
 
 const dmMono = DM_Mono({
@@ -58,7 +58,7 @@ export default function CaseStudyTemplate({ project }: Props) {
         {project.title && (
           <div className="sm:flex sm:justify-between mb-6">
             <div className="mb-6">
-              <h2 className={`text-3xl font-bold mb-3 ${raleway.className}`}>
+              <h2 className={`text-3xl font-bold mb-3 ${dmSans.className}`}>
                 {project.title}
               </h2>
               {project.badgeLabel && (
@@ -77,7 +77,7 @@ export default function CaseStudyTemplate({ project }: Props) {
                 rel="noopener noreferrer"
               >
                 <Button
-                  className={`rounded-full sm:px-8 sm:py-6 text-sm py-4 px-4 sm:text-[1rem] hover:bg-blue-400 transition-colors dark:hover:text-white cursor-pointer ${raleway.className}`}
+                  className={`rounded-full sm:px-8 sm:py-6 text-sm py-4 px-4 sm:text-[1rem] hover:bg-blue-400 transition-colors dark:hover:text-white cursor-pointer ${poppins.className}`}
                 >
                   {project.ctaHeading}
                 </Button>
@@ -99,14 +99,14 @@ export default function CaseStudyTemplate({ project }: Props) {
         ) : null}
 
         {/* 👉 Body Content */}
-        <div className={`space-y-6 ${montserrat.className}`}>
+        <div className={`space-y-6 ${poppins.className}`}>
           {project.overview && (
             <Section title="Project Overview">{project.overview}</Section>
           )}
 
           {project.objective && project.objective.length > 0 && (
             <Section title="Objectives">
-              <ul className="list-disc list-inside text-lg sm:text-[1.25rem]">
+              <ul className="list-disc list-inside text-md font-light">
                 {project.objective.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -124,7 +124,7 @@ export default function CaseStudyTemplate({ project }: Props) {
 
           {project.deliverables && project.deliverables.length > 0 && (
             <Section title="Tech Stacks">
-              <ul className="list-disc list-inside text-lg sm:text-[1.25rem]">
+              <ul className="list-disc list-inside text-md">
                 {project.deliverables.map((item) => (
                   <li key={item} className={dmMono.className}>
                     {item}
@@ -161,10 +161,10 @@ const Section = ({
 }) => (
   <div>
     <h2
-      className={`text-2xl font-semibold mb-4 text-blue-400 ${raleway.className}`}
+      className={`text-xl sm:text-2xl font-semibold mb-4 text-blue-400 ${dmSans.className}`}
     >
       {title}
     </h2>
-    <div className="text-lg sm:text-[1.25rem]">{children}</div>
+    <div className="text-md sm:text-[1.25rem] font-light">{children}</div>
   </div>
 )

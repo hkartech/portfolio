@@ -3,7 +3,7 @@ export const projectCards = [
     id: "personal-portfolio",
     title: "Personal Portfolio",
     description:
-      "A modern and responsive portfolio built from scratch to highlight my design skills, projects, and journey.",
+      "A modern and responsive portfolio built from scratch to highlight my design skills, projects, journey and to help other designers.",
     imgs: ["/project-Image-1.png"],
     category: "uiux",
   },
