@@ -25,7 +25,7 @@ interface Metric {
 
 const metrics: Metric[] = [
   { id: 1, label: 'Projects Completed', value: 50, suffix: '+' },
-  { id: 2, label: 'Students Helped', value: 10, suffix: '+' },
+  { id: 2, label: 'Students Helped', value: 10000, suffix: '+' },
   { id: 3, label: 'Tools Reviewed', value: 100, suffix: '+' },
   { id: 4, label: 'Tutorials Created', value: 150, suffix: '+' },
 ]
