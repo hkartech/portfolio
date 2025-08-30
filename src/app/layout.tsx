@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "Portfolio site for Hasnain Khan",
   icons: {
     icon: "/browser-tab-image.png", // place your favicon file in the public folder
+    shortcut: "/browser-tab-image.png",
+    apple: "/browser-tab-image.png",
   },
 };
 
