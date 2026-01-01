@@ -1,15 +1,8 @@
-'use client'
+"use client"
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DM_Sans, Raleway, Montserrat } from 'next/font/google'
-
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-dm-sans',
-})
 
 const raleway = Raleway({
   subsets: ['latin'],
@@ -17,32 +10,29 @@ const raleway = Raleway({
   variable: '--font-raleway',
 })
 
-const monstserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-montserrat',
-})
-
-
 const Loader = () => {
+  const [isMounted, setIsMounted] = useState(false) // ✅ new
   const [isLoading, setIsLoading] = useState(true)
   const [showText, setShowText] = useState(false)
 
   useEffect(() => {
-    // Delay showing the typewriter text by a short moment
+    setIsMounted(true) // ✅ only render after mount
+
     const textTimer = setTimeout(() => {
       setShowText(true)
-    },0) // small delay to ensure clean mount
+    }, 0)
 
     const exitTimer = setTimeout(() => {
       setIsLoading(false)
-    }, 3000) // total duration (typing: 1.5s + pause)
+    }, 3000)
 
     return () => {
       clearTimeout(textTimer)
       clearTimeout(exitTimer)
     }
   }, [])
+
+  if (!isMounted) return null // ✅ prevents SSR/CSR mismatch
 
   return (
     <AnimatePresence>
@@ -82,21 +72,13 @@ const Loader = () => {
             }
 
             @keyframes typing {
-              from {
-                width: 0;
-              }
-              to {
-                width: 10.7ch;
-              }
+              from { width: 0; }
+              to { width: 10.7ch; }
             }
 
             @keyframes blink {
-              0%, 100% {
-                opacity: 1;
-              }
-              50% {
-                opacity: 0;
-              }
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0; }
             }
           `}</style>
         </motion.div>
