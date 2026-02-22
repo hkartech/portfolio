@@ -4,7 +4,7 @@ import Technologies from '@/components/ui/technologies';
 import Footer from '@/components/ui/footer';
 import WhatIDo from '@/components/ui/whatido';
 import MetrixStatics from '@/components/ui/metrixstatics'
-import ContactSection from '@/components/ui/contactSection';
+import ContactSection from '@/components/ui/contactsection';
 import RecentProjects from '@/components/ui/RecentProjects';
 
 export default function Home() {
