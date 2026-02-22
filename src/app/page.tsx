@@ -1,4 +1,3 @@
-import React from 'react';
 import Hero from '@/components/ui/hero';
 import RibbonBar from '@/components/ui/ribbon-bar';
 import Technologies from '@/components/ui/technologies';
