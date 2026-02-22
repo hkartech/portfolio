@@ -3,18 +3,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import CountUp from 'react-countup'
-import { DM_Sans, Poppins } from 'next/font/google'
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-})
-
-export const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-})
 
 interface Metric {
   id: number
@@ -24,10 +12,10 @@ interface Metric {
 }
 
 const metrics: Metric[] = [
-  { id: 1, label: 'Projects Completed', value: 50, suffix: '+' },
-  { id: 2, label: 'Students Helped', value: 10000, suffix: '+' },
-  { id: 3, label: 'Tools Reviewed', value: 100, suffix: '+' },
-  { id: 4, label: 'Tutorials Created', value: 150, suffix: '+' },
+  { id: 1, label: 'ٖSocial Followers', value: 26, suffix: 'K+' },
+  { id: 2, label: 'Social Views', value: 8, suffix: 'M' },
+  { id: 3, label: 'Happy Clients', value: 100, suffix: '+' },
+  { id: 4, label: 'Projects Done', value: 100, suffix: '+' },
 ]
 
 const MetricsBar = () => {
@@ -66,7 +54,7 @@ const MetricsBar = () => {
             transition={{ duration: 0.8, delay: metric.id * 0.2 }}
           >
             <span
-              className={`text-3xl sm:text-4xl font-bold ${dmSans.className} text-blue-600 dark:text-blue-400`}
+              className="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400"
             >
               {hasAnimated ? (
                 <CountUp end={metric.value} duration={2} />
@@ -76,7 +64,7 @@ const MetricsBar = () => {
               {metric.suffix || ''}
             </span>
             <span
-              className={`mt-2 text-md sm:text-md font-light ${poppins.className} text-zinc-600 dark:text-zinc-400`}
+              className="mt-2 text-md sm:text-lg font-normal text-zinc-600 dark:text-zinc-400"
             >
               {metric.label}
             </span>

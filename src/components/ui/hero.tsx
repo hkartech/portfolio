@@ -4,90 +4,38 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
-import { Raleway, Geist, Montserrat, DM_Sans, Poppins } from 'next/font/google'
-
-const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-raleway',
-})
-
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"], // optional, if you want multiple weights
-});
-
-const montserrat = Montserrat({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-montserrat",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-});
-
-export const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // choose the weights you need
-});
-
 
 const Hero = () => {
   return (
     <motion.section
       id="hero"
-      className="relative px-6 py-20 md:py-28 lg:px-20 overflow-hidden"
+      className="relative px-4 py-15 md:py-15 lg:px-20 overflow-hidden"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
-      <div className="max-w-5xl mx-auto text-left">
-
-        {/* Greeting */}
-        <motion.h2
-          className={`inline-flex text-[1rem] mb-6 pl-[10px] sm:text-[1rem] font-light ${poppins.className} font-[500] items-center gap-2 border-sky-500/40 border px-3 py-1 rounded-full bg-sky-500/20`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
-        >
-          <motion.span
-            animate={{ rotate: [0, 20, 0, 15, 0] }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatDelay: 1,
-              ease: 'easeInOut',
-            }}
-            className="inline-block origin-bottom"
-          >
-            👋
-          </motion.span>
-          Hi I'm Hasnain
-        </motion.h2>
-
+      <div className="max-w-6xl mx-auto text-left">
 
         {/* Title */}
         <motion.h1
-          className={`text-[3.2rem] md:text-[4.5rem] font-bold mb-6 leading-none ${dmSans.className} bg-clip-text text-black dark:text-white`}
+          className="text-5xl md:text-7xl font-bold mb-6 leading-none text-black dark:text-white max-w-4xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
         >
-          Building the Future<br /> of Design
+          Turning Ideas into Awesome Digital Experiences
         </motion.h1>
 
         {/* Description */}
         <motion.p
-          className={`text-lg sm:text-[1.25rem] mb-8 max-w-3xl font-light ${poppins.className} text-zinc-600 dark:text-zinc-400`}
+          className="text-lg sm:text-xl mb-8 max-w-3xl font-normal text-zinc-600 dark:text-zinc-400"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.7 }}
         >
-          Discover free design and AI tools, tutorials, and resources to kickstart <br/> your creative journey without breaking the bank.
+          A creative design studio focused on UI/UX, graphic design,
+          branding, visuals, and vibe coding to design and build faster
+          quality work for clients worldwide.
         </motion.p>
 
         {/* Button */}
@@ -97,19 +45,20 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <a
-            href="https://wa.me/message/PGKCBV432U3ZO1"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            asChild
+            className="rounded-full px-8! py-7 text-[1rem] bg-blue-600 hover:bg-blue-700 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Button
-              className={`group rounded-full !pl-5 !pr-6 py-6 text-sm sm:text-md font-light ${poppins.className} bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden`}
+            <a
+              href="https://wa.me/message/PGKCBV432U3ZO1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center"
             >
-              <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <MessageCircle className="!h-6 !w-6 !stroke-1" />
+              <MessageCircle className="h-6 w-6 stroke-2 mr-2" />
               Let's Talk
-            </Button>
-          </a>
+            </a>
+          </Button>
         </motion.div>
 
       </div>

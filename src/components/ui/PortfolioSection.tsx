@@ -2,30 +2,18 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Eye, X, SquareArrowOutUpRight } from "lucide-react"
+import { Eye, X, SquareArrowOutUpRight, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { useRouter } from "next/navigation"
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
-import { Poppins, DM_Sans } from "next/font/google"
 import { projectCards } from "@/app/data/projectCards"
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-})
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-})
 
 type Project = {
   id: string
@@ -57,6 +45,7 @@ const graphicProjects: Project[] = [
 ]
 
 const PortfolioSection = () => {
+  const router = useRouter()
   const [activeProj, setActiveProj] = useState<Project | null>(null)
   const [activeTab, setActiveTab] = useState("uiux")
 
@@ -64,18 +53,30 @@ const PortfolioSection = () => {
   const aiProjects = projectCards.filter((p) => p.category === "ai")
 
   return (
-    <main className="py-16 px-4">
-      <section id="portfolio" className="max-w-5xl mx-auto">
+    <main className="py-16 px-4 relative">
+      {/* Back Button */}
+      <div className="max-w-6xl mx-auto mb-6">
+        <Button
+          variant="ghost"
+          onClick={() => router.back()}
+          className="flex items-center gap-2 hover:bg-transparent hover:text-blue-600 transition-colors"
+        >
+          <ArrowLeft className="w-6 h-6" />
+          <span className="text-lg font-normal">Go Back</span>
+        </Button>
+      </div>
+
+      <section id="portfolio" className="max-w-6xl mx-auto">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <div className="flex justify-center mb-8">
             <TabsList>
-              <TabsTrigger value="uiux" className={`${dmSans.className}`}>
-                UI/UX Design
+              <TabsTrigger value="uiux">
+                UI/UX
               </TabsTrigger>
-              <TabsTrigger value="graphic" className={`${dmSans.className}`}>
-                Graphic Design
+              <TabsTrigger value="graphic">
+                Graphic
               </TabsTrigger>
-              <TabsTrigger value="ai" className={`${dmSans.className}`}>
+              <TabsTrigger value="ai">
                 AI-Built Projects
               </TabsTrigger>
             </TabsList>
@@ -105,18 +106,16 @@ const PortfolioSection = () => {
                       <div className="absolute inset-0 bg-black/20 z-10" />
                     </div>
                     <CardContent className="space-y-2">
-                      <h3 className={`text-xl font-medium ${poppins.className}`}>
+                      <h3 className="text-xl font-medium">
                         {project.title}
                       </h3>
-                      <p
-                        className={`text-md text-muted-foreground mb-3 font-light ${poppins.className}`}
-                      >
+                      <p className="text-lg text-muted-foreground mb-3 font-normal">
                         {project.description}
                       </p>
                       <Link href={`/Projects/${project.id}`} className="group">
                         <Button
                           variant="link"
-                          className={`!p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer font-light ${poppins.className}`}
+                          className="!p-0 text-lg hover:no-underline hover:text-blue-400 transition-colors cursor-pointer font-normal"
                         >
                           View Project
                           <SquareArrowOutUpRight className="ml-1 w-4 h-4" />
@@ -134,10 +133,10 @@ const PortfolioSection = () => {
             <Tabs defaultValue="logos">
               <div className="flex justify-center mb-4">
                 <TabsList>
-                  <TabsTrigger value="logos" className={`${dmSans.className}`}>
+                  <TabsTrigger value="logos">
                     Shapes & Logos
                   </TabsTrigger>
-                  <TabsTrigger value="posters" className={`${dmSans.className}`}>
+                  <TabsTrigger value="posters">
                     Poster Design
                   </TabsTrigger>
                 </TabsList>
@@ -235,18 +234,16 @@ const PortfolioSection = () => {
                       <div className="absolute inset-0 bg-black/20 z-10" />
                     </div>
                     <CardContent className="space-y-2">
-                      <h3 className={`text-xl font-medium ${poppins.className}`}>
+                      <h3 className="text-xl font-medium">
                         {project.title}
                       </h3>
-                      <p
-                        className={`text-md text-muted-foreground mb-3 font-light ${poppins.className}`}
-                      >
+                      <p className="text-lg text-muted-foreground mb-3 font-normal">
                         {project.description}
                       </p>
                       <Link href={`/Projects/${project.id}`} className="group">
                         <Button
                           variant="link"
-                          className={`!p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer font-light ${poppins.className}`}
+                          className="!p-0 text-lg hover:no-underline hover:text-blue-400 transition-colors cursor-pointer font-normal"
                         >
                           View Project
                           <SquareArrowOutUpRight className="ml-1 w-4 h-4" />

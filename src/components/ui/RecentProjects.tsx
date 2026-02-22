@@ -3,23 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { Poppins, DM_Sans } from "next/font/google";
 import { projectCards } from "@/app/data/projectCards";
 import { Button } from "@/components/ui/button";
 import { SquareArrowOutUpRight } from "lucide-react";
-import { motion, Variants } from "framer-motion"; // ✅ Import Variants type
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-});
+import { motion, Variants } from "framer-motion";
 
 // ✅ Strongly typed animation variants
 const fadeInUp: Variants = {
@@ -34,14 +21,14 @@ const fadeInUp: Variants = {
 export const RecentProjects = () => {
   return (
     <section className="w-full py-16 px-4 md:px-6">
-      <div className="max-w-5xl mx-auto" id="projects">
+      <div className="max-w-6xl mx-auto" id="projects">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className={`text-3xl font-bold mb-2 text-center ${dmSans.className}`}
+          className="text-3xl font-bold mb-2 text-center"
         >
           Recent Projects
         </motion.h2>
@@ -51,7 +38,7 @@ export const RecentProjects = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: true }}
-          className={`text-muted-foreground mb-14 text-center text-md sm:text-lg ${poppins.className}`}
+          className="text-muted-foreground mb-14 text-center text-lg sm:text-lg"
         >
           A few highlights from my latest design and development work.
         </motion.p>
@@ -81,18 +68,16 @@ export const RecentProjects = () => {
                 </div>
 
                 <CardContent className="space-y-2">
-                  <h3 className={`text-xl font-medium ${poppins.className}`}>
+                  <h3 className="text-xl font-medium">
                     {project.title}
                   </h3>
-                  <p
-                    className={`text-md text-muted-foreground mb-3 font-light ${poppins.className}`}
-                  >
+                  <p className="text-lg text-muted-foreground mb-3 font-normal">
                     {project.description}
                   </p>
 
                   <Link href={`/Projects/${project.id}`} className="group">
                     <Button
-                      className={`!p-0 text-[1rem] hover:no-underline hover:text-blue-400 transition-colors cursor-pointer font-light ${poppins.className}`}
+                      className="!p-0 text-lg hover:no-underline hover:text-blue-400 transition-colors cursor-pointer font-normal"
                       variant="link"
                     >
                       View Project
@@ -115,7 +100,7 @@ export const RecentProjects = () => {
         >
           <Link href="/portfolio">
             <Button
-              className={`px-6 py-6 text-sm sm:text-md font-light rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${poppins.className}`}
+              className="rounded-full px-8! py-7 text-[1rem] bg-blue-600 hover:bg-blue-700 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               View all work
             </Button>

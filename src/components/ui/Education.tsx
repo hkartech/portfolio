@@ -1,27 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Poppins, DM_Sans, DM_Mono } from 'next/font/google'
 import { Badge } from '@/components/ui/badge'
 import { GraduationCap, Calendar } from 'lucide-react'
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-poppins',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-dm-sans',
-})
-
-const dmMono = DM_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-dm-mono',
-})
 
 const educationList = [
   {
@@ -49,7 +30,7 @@ export default function EducationTimeline() {
     <section id="education" className="py-16 px-4">
       <div className="max-w-5xl mx-auto">
         <motion.h2
-          className={`text-3xl font-bold mb-12 text-center ${dmSans.className}`}
+          className="text-3xl font-bold mb-12 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -77,15 +58,15 @@ export default function EducationTimeline() {
                   <div className="flex-shrink-0 h-9 w-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
                     <GraduationCap className="h-5 w-5" />
                   </div>
-                  <span className={`text-md sm:text-lg font-semibold ${poppins.className}`}>
+                  <span className="text-lg font-semibold">
                     {edu.institution}
                   </span>
                 </div>
 
                 {/* Degree and Date */}
                 <div>
-                  <h3 className={`text-md sm:text-lg ${poppins.className}`}>{edu.degree}</h3>
-                  <div className={`flex items-center gap-2 mt-1 text-sm text-muted-foreground ${dmMono.className}`}>
+                  <h3 className="text-lg">{edu.degree}</h3>
+                  <div className="flex items-center gap-2 mt-1 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
                     <span>{edu.period}</span>
                   </div>
@@ -97,7 +78,7 @@ export default function EducationTimeline() {
                     <Badge
                       key={tag}
                       variant="secondary"
-                      className={`rounded-full border-muted-foreground/20 text-muted-foreground bg-muted ${dmMono.className}`}
+                      className="rounded-full border-muted-foreground/20 text-muted-foreground bg-muted text-sm"
                     >
                       {tag}
                     </Badge>

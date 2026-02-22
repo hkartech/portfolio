@@ -3,28 +3,10 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { DM_Sans, Poppins, DM_Mono } from 'next/font/google'
+import { useRouter } from 'next/navigation'
+import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-
-// ✅ Fonts
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-dm-sans',
-})
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-poppins',
-})
-
-const dmMono = DM_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-dm-mono',
-})
 
 // ✅ Reusable Project Type
 type ProjectType = {
@@ -51,20 +33,34 @@ type Props = {
 }
 
 export default function CaseStudyTemplate({ project }: Props) {
+  const router = useRouter()
+
   return (
-    <main className="py-12 px-4">
+    <main className="py-12 px-4 relative">
+      {/* Back Button */}
+      <div className="max-w-5xl mx-auto mb-6">
+        <Button
+          variant="ghost"
+          onClick={() => router.back()}
+          className="flex items-center gap-2 hover:bg-transparent hover:text-blue-600 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-lg font-normal">Go Back</span>
+        </Button>
+      </div>
+
       <section className="max-w-5xl mx-auto">
         {/* 👉 CTA Section */}
         {project.title && (
           <div className="sm:flex sm:justify-between mb-6">
             <div className="mb-6">
-              <h2 className={`text-3xl font-bold mb-3 ${dmSans.className}`}>
+              <h2 className="text-3xl font-bold mb-3">
                 {project.title}
               </h2>
               {project.badgeLabel && (
                 <Badge
                   variant="outline"
-                  className={`text-sm ${dmMono.className}`}
+                  className="text-sm"
                 >
                   {project.badgeLabel}
                 </Badge>
@@ -77,7 +73,7 @@ export default function CaseStudyTemplate({ project }: Props) {
                 rel="noopener noreferrer"
               >
                 <Button
-                  className={`rounded-full sm:px-8 sm:py-6 text-sm py-4 px-4 sm:text-[1rem] hover:bg-blue-400 transition-colors dark:hover:text-white cursor-pointer ${poppins.className}`}
+                  className="rounded-full sm:px-8 sm:py-6 text-sm py-4 px-4 sm:text-[1rem] hover:bg-blue-400 transition-colors dark:hover:text-white cursor-pointer"
                 >
                   {project.ctaHeading}
                 </Button>
@@ -99,14 +95,14 @@ export default function CaseStudyTemplate({ project }: Props) {
         ) : null}
 
         {/* 👉 Body Content */}
-        <div className={`space-y-6 ${poppins.className}`}>
+        <div className="space-y-6">
           {project.overview && (
             <Section title="Project Overview">{project.overview}</Section>
           )}
 
           {project.objective && project.objective.length > 0 && (
             <Section title="Objectives">
-              <ul className="list-disc list-inside text-md font-light">
+              <ul className="list-disc list-inside text-md font-normal">
                 {project.objective.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -126,7 +122,7 @@ export default function CaseStudyTemplate({ project }: Props) {
             <Section title="Tech Stacks">
               <ul className="list-disc list-inside text-md">
                 {project.deliverables.map((item) => (
-                  <li key={item} className={dmMono.className}>
+                  <li key={item}>
                     {item}
                   </li>
                 ))}
@@ -160,11 +156,9 @@ const Section = ({
   children: React.ReactNode
 }) => (
   <div>
-    <h2
-      className={`text-xl sm:text-2xl font-semibold mb-4 text-blue-400 ${dmSans.className}`}
-    >
+    <h2 className="text-2xl sm:text-2xl font-semibold mb-4 text-blue-400">
       {title}
     </h2>
-    <div className="text-md sm:text-[1.25rem] font-light">{children}</div>
+    <div className="text-lg sm:text-[1.25rem] font-normal">{children}</div>
   </div>
 )

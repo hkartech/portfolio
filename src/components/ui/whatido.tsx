@@ -2,74 +2,43 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
-import { Raleway, Geist, Montserrat, DM_Sans, Poppins } from 'next/font/google'
-
-const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-raleway',
-})
-
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"], // optional, if you want multiple weights
-});
-
-const montserrat = Montserrat({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-montserrat",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-});
-
-export const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // choose the weights you need
-});
-
-
 
 const services = [
     {
         title: "UI/UX Design",
-        desc: "Designing smooth, intuitive user interfaces for web and mobile applications.",
+        desc: "Crafting intuitive, user-centered interfaces with seamless workflows, interactive prototypes, and thoughtful design systems that delight users and drive engagement.",
     },
     {
         title: "Graphic Design",
-        desc: "Creating bold visual assets, social posts, branding materials, posters, layouts, and illustrations.",
+        desc: "Creating bold visual identities, compelling social media assets, brand collateral, posters, and illustrations that communicate messages with impact and clarity.",
     },
     {
         title: "Shopify App Design",
-        desc: "Designing user-friendly, conversion-focused experiences for custom Shopify apps.",
+        desc: "Designing conversion-focused Shopify app experiences with intuitive dashboards, smooth merchant workflows, and interfaces that boost store performance.",
     },
     {
         title: "AI Frontend Builds",
-        desc: "Using AI tools to build clean, scalable, responsive frontends faster than ever before.",
+    desc: "Leveraging cutting-edge AI tools to rapidly generate clean, responsive frontend code while maintaining high performance, scalability, and best practices.",
     },
     {
         title: "Web Design & Development",
-        desc: "Delivering responsive, fast-loading websites with excellent structure and usability.",
+        desc: "Building fast, responsive websites with modern frameworks, optimized structure, pixel-perfect implementation, and seamless user experiences across devices.",
     },
     {
         title: "Personal Branding",
-        desc: "Developing strong brand identities that connect with people and build credibility.",
+        desc: "Developing authentic brand identities with cohesive visual systems, compelling messaging, and strategic positioning that build trust and lasting connections.",
     },
 ];
+
 export default function WhatIDo() {
     return (
         <main className="py-16 px-4 border-b">
-            <section className="max-w-5xl mx-auto" id="services">
+            <section className="max-w-6xl mx-auto" id="services">
                 <div>
-                    <h2 className={`text-3xl font-bold text-center mb-2 ${dmSans.className}`}>
+                    <h2 className="text-3xl font-bold text-center mb-2">
                         What I Do
                     </h2>
-                    <p className={`text-center text-muted-foreground mb-14 text-md sm:text-lg font-light ${poppins.className}  text-zinc-600 dark:text-zinc-400`}>
+                    <p className="text-center mb-14 text-lg sm:text-lg font-normal text-zinc-600 dark:text-zinc-400">
                         I blend design, development, and AI to create modern
                         <br className="hidden sm:block" />
                         , high-performing digital experiences.
@@ -84,12 +53,12 @@ export default function WhatIDo() {
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                             >
-                                <Card className="group hover:shadow-lg shadow-none hover:bg-blue-400 transition-all duration-300 rounded-md overflow-hidden">
+                                <Card className="group hover:shadow-lg shadow-none hover:bg-blue-400 transition-all duration-300 rounded-xl overflow-hidden h-full">
                                     <CardContent className="text-center">
-                                        <h3 className={`text-xl font-semibold mb-2 text-left group-hover:text-white ${dmSans.className}`}>
+                                        <h3 className="text-xl font-semibold mb-3 text-left group-hover:text-white">
                                             {item.title}
                                         </h3>
-                                        <p className={`text-md text-muted-foreground text-left group-hover:text-white font-light ${poppins.className}`}>
+                                        <p className="text-lg text-muted-foreground text-left group-hover:text-white font-normal leading-relaxed">
                                             {item.desc}
                                         </p>
                                     </CardContent>

@@ -1,37 +1,7 @@
 'use client'
 
-import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
-import { Raleway, Geist, Montserrat, DM_Sans, Poppins } from 'next/font/google'
-
-const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-raleway',
-})
-
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"],
-});
-
-const montserrat = Montserrat({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-montserrat",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-});
-
-export const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
+import { useRef, useEffect, useState } from "react"
 
 const skills = [
   { name: "Figma", img: "/Figma.svg" },
@@ -55,65 +25,59 @@ const skills = [
 ]
 
 const MySkills = () => {
+  const [duplicatedSkills] = useState([...skills, ...skills, ...skills, ...skills])
+  const scrollerRef = useRef<HTMLDivElement>(null)
+  const [scrollWidth, setScrollWidth] = useState(0)
+
+  useEffect(() => {
+    if (scrollerRef.current) {
+      setScrollWidth(scrollerRef.current.scrollWidth / 4)
+    }
+  }, [])
+
   return (
-    <main className="py-16 px-4 bg-transparent">
-      <section className="max-w-5xl mx-auto text-center">
-        {/* Animated heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className={`text-3xl font-bold mb-2 ${dmSans.className}`}
+    <div className="w-full overflow-hidden pb-10">
+      <div className="max-w-6xl md-max-w-full mx-auto relative w-full overflow-hidden px-4">
+        <motion.div
+          ref={scrollerRef}
+          className="flex gap-10"
+          animate={{
+            x: scrollWidth ? [0, -scrollWidth] : [0, -1920]
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 60,
+              ease: "linear",
+              repeatDelay: 0
+            },
+          }}
         >
-          Technologies
-        </motion.h2>
-
-        {/* Animated paragraph */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className={`text-md mb-14 sm:text-lg font-light ${poppins.className} text-zinc-600 dark:text-zinc-400`}
-        >
-          These are the technologies and tools I work with:
-        </motion.p>
-
-        {/* Skills grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              viewport={{ once: true }}
+          {duplicatedSkills.map((skill, index) => (
+            <div
+              key={`${skill.name}-${index}`}
+              className="flex-shrink-0"
             >
-              <Card className="items-center border shadow-none justify-center text-center transition-transform hover:-translate-y-2 hover:shadow-xl rounded-sm">
-                <CardContent className="flex flex-col items-center justify-center gap-3">
-                  <img
-                    src={skill.img}
-                    alt={skill.name}
-                    className={`w-10 h-10 object-contain ${skill.imgDark ? "dark:hidden" : ""}`}
-                    loading="lazy"
-                  />
-                  {skill.imgDark && (
-                    <img
-                      src={skill.imgDark}
-                      alt={`${skill.name} dark`}
-                      className="w-10 h-10 object-contain hidden dark:block"
-                      loading="lazy"
-                    />
-                  )}
-                  <span className={`text-sm hidden sm:block ${montserrat.className}`}>{skill.name}</span>
-                </CardContent>
-              </Card>
-            </motion.div>
+              <img
+                src={skill.img}
+                alt={skill.name}
+                className={`w-12 h-12 object-contain ${skill.imgDark ? "dark:hidden" : ""}`}
+                loading="lazy"
+              />
+              {skill.imgDark && (
+                <img
+                  src={skill.imgDark}
+                  alt={`${skill.name} dark`}
+                  className="w-12 h-12 object-contain hidden dark:block"
+                  loading="lazy"
+                />
+              )}
+            </div>
           ))}
-        </div>
-      </section>
-    </main>
+        </motion.div>
+      </div>
+    </div>
   )
 }
 

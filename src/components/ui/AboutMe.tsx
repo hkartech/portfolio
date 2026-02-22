@@ -2,19 +2,6 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { DM_Sans, Poppins } from "next/font/google"
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-})
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-})
 
 const AboutMe = () => {
   return (
@@ -28,7 +15,7 @@ const AboutMe = () => {
         >
           <div className="w-full aspect-[3/3] overflow-hidden rounded-xl shadow-lg">
             <Image
-              src="/About me image.JPG"
+              src="/Hasnainkhan.jpg"
               alt="Hasnain Khan"
               width={400}
               height={400}
@@ -43,27 +30,20 @@ const AboutMe = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className={`text-3xl font-semibold mb-4 ${dmSans.className}`}>
+          <h2 className="text-3xl font-semibold mb-4">
             About Me
           </h2>
 
-          <p
-            className={`text-md sm:text-lg text-muted-foreground mb-6 font-light ${poppins.className}`}
-          >
-            {"I'm Hasnain Khan, a passionate UI/UX designer and front-end developer who blends creative design with smart code."}
+          <p className="text-lg sm:text-lg text-muted-foreground mb-6 font-normal">
+            {"I’m Hasnain Khan, a Designer and Vibe Coder based in Pakistan with over 5 years of experience creating clean and intuitive digital experiences."}
           </p>
 
-          <p
-            className={`text-md sm:text-lg text-muted-foreground mb-6 font-light ${poppins.className}`}
-          >
-            My journey started with graphics, matured through UI design, and now thrives in creating smooth and engaging user interfaces using Figma, Tailwind, and Next.js.
-            I love solving design problems, building side projects, and teaching what I know.
+          <p className="text-lg sm:text-lg text-muted-foreground mb-6 font-normal">
+            I started my journey as a graphic designer, then moved into UI/UX and Vibe Coding. Over time, I focused on building products that not only look good but also work smoothly. I enjoy solving design problems, building side projects, and sharing what I learn.
           </p>
 
-          <p
-            className={`text-md sm:text-lg text-muted-foreground font-light ${poppins.className}`}
-          >
-            Outside work, I create content for <strong>HK Artech</strong>, share tips on TikTok & YouTube, and dream of building tools that make digital life easier.
+          <p className="text-lg sm:text-lg text-muted-foreground font-normal">
+            Outside work, I create content for <strong>HK Artech Studio</strong>,  Outside of client work, I create content for HK Artech Studio on TikTok, Instagram, Threads, and YouTube, where I share design insights, usful resourses tutorials & useful prompts.
           </p>
         </motion.div>
       </div>

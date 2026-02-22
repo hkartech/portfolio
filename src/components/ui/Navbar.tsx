@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ModeToggle } from '@/components/ui/theme-btn'
 import { Menu } from 'lucide-react'
 import {
@@ -13,36 +14,48 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { motion } from 'framer-motion'
-import { Geist, Montserrat, DM_Sans, Poppins } from 'next/font/google'
-
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"],
-})
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-montserrat",
-})
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
-})
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-})
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
-  const handleLinkClick = () => setOpen(false)
+  const handleHashLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setOpen(false)
+    
+    // Check if it's a hash link
+    if (href.includes('#')) {
+      const [path, hash] = href.split('#')
+      
+      // If we're on the same page
+      if (path === '' || path === pathname) {
+        e.preventDefault()
+        const element = document.getElementById(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }
+    }
+  }
+
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setOpen(false)
+    
+    if (pathname === '/') {
+      e.preventDefault()
+      const element = document.getElementById('contact')
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
+  const navLinks = [
+    { name: 'HOME', href: '/', isHash: false },
+    { name: 'WORK', href: '/portfolio', isHash: false },
+    { name: 'SERVICES', href: '/#services', isHash: true },
+    { name: 'FOUNDER', href: '/about', isHash: false },
+    { name: 'CONTACT', href: '/#contact', isHash: true, isContact: true },
+  ]
 
   return (
     <motion.nav
@@ -52,24 +65,27 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="max-w-5xl container mx-auto flex justify-between items-center">
+      <div className="max-w-6xl container mx-auto flex justify-between items-center">
         
         {/* Logo */}
-        <Link href="/">
-          <span className={`text-2xl font-medium ${dmSans.className}`}>
-            Hk Artech
+        <Link href="/" onClick={() => setOpen(false)}>
+          <span className="text-lg font-medium tracking-wide">
+            HK ARTECH STUDIO
           </span>
         </Link> 
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex space-x-6 items-center">
-          <Link href="/" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Home</Link>
-          <Link href="/about" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>About Me</Link>
-          <Link href="/#vision" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Vision</Link>
-          <Link href="/blogs" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Blog</Link>
-          <Link href="/resources" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Resources & Tools</Link>
-          <Link href="/learninghub" className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Learning Hub</Link>
-          <Link href="/#contact" onClick={handleLinkClick} className={`${poppins.className} font-light transition-colors hover:text-blue-400`}>Contact</Link>
+        <div className="hidden lg:flex space-x-8 items-center">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="text-sm font-normal tracking-wide transition-colors hover:text-blue-400"
+              onClick={link.isContact ? handleContactClick : (e) => handleHashLink(e, link.href)}
+            >
+              {link.name}
+            </Link>
+          ))}
           <ModeToggle />
         </div>
 
@@ -85,13 +101,16 @@ const Navbar = () => {
                 <SheetTitle />
                 <SheetDescription asChild className="my-6">
                   <div className="flex flex-col items-center gap-6">
-                    <Link href="/" className={`text-lg font-light ${poppins.className} hover:text-blue-400`} onClick={handleLinkClick}>Home</Link>
-                    <Link href="/about" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>About Me</Link>
-                    <Link href="#vision" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>Vision</Link>
-                    <Link href="/blogs" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>Blog</Link>
-                    <Link href="/resources" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>Resources & Tools</Link>
-                    <Link href="/learninghub" className={`text-lg font-light ${poppins.className}`} onClick={handleLinkClick}>Learning Hub</Link>
-                    <Link href="/#contact" className={`text-lg font-light ${poppins.className} hover:text-primary transition-colors`} onClick={handleLinkClick}>Contact</Link>
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        className="text-lg font-normal tracking-wide hover:text-blue-400 transition-colors"
+                        onClick={link.isContact ? handleContactClick : (e) => handleHashLink(e, link.href)}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
                   </div>
                 </SheetDescription>
               </SheetHeader>

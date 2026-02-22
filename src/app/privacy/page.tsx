@@ -4,20 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowUpRight, ChevronUp } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Poppins, DM_Sans } from 'next/font/google';
 import { useEffect, useState } from 'react';
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-dm-sans',
-});
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-poppins',
-});
 
 export default function PrivacyPage() {
   const [showTop, setShowTop] = useState(false);
@@ -40,8 +27,8 @@ export default function PrivacyPage() {
       >
         {/* Header */}
         <header className="mb-8">
-          <h1 className={`text-3xl font-bold ${dmSans.className}`}>Privacy Policy</h1>
-          <p className={`mt-2 text-sm text-zinc-600 dark:text-zinc-400 ${poppins.className}`}>
+          <h1 className="text-3xl font-bold">Privacy Policy</h1>
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
             Effective Date: August 22, 2025
           </p>
         </header>
@@ -50,13 +37,13 @@ export default function PrivacyPage() {
         <Card className="border shadow-none bg-white/90 dark:bg-zinc-900/70 backdrop-blur">
           <CardContent className="px-6 md:px-10 py-8">
             <section className="space-y-6">
-              <p className={`${poppins.className} text-md sm:text-lg font-light`}>
+              <p className="text-lg sm:text-lg font-normal">
                 Your privacy is important to me. This policy explains what information I may collect and how it is used.
               </p>
 
               <div>
-                <h2 className={`text-xl font-semibold mb-2 ${dmSans.className}`}>1. Information I Collect</h2>
-                <ul className={`list-disc pl-5 space-y-2 ${poppins.className}`}>
+                <h2 className="text-xl font-semibold mb-2">1. Information I Collect</h2>
+                <ul className="list-disc pl-5 space-y-2 font-normal">
                   <li>
                     <span className="font-medium">Personal Information (you provide):</span> name, email, and details you submit via the contact form.
                   </li>
@@ -67,8 +54,8 @@ export default function PrivacyPage() {
               </div>
 
               <div>
-                <h2 className={`text-xl font-semibold mb-2 ${dmSans.className}`}>2. How I Use Information</h2>
-                <ul className={`list-disc pl-5 space-y-2 ${poppins.className}`}>
+                <h2 className="text-xl font-semibold mb-2">2. How I Use Information</h2>
+                <ul className="list-disc pl-5 space-y-2 font-normal">
                   <li>Respond to inquiries and collaboration requests.</li>
                   <li>Improve the Site and user experience.</li>
                   <li>Understand what content visitors find useful.</li>
@@ -76,29 +63,29 @@ export default function PrivacyPage() {
               </div>
 
               <div>
-                <h2 className={`text-xl font-semibold mb-2 ${dmSans.className}`}>3. Sharing of Information</h2>
-                <p className={`${poppins.className} font-light`}>
+                <h2 className="text-xl font-semibold mb-2">3. Sharing of Information</h2>
+                <p className="font-normal">
                   I do not sell or rent your personal information. I may share information if required by law or as necessary to respond to your direct request.
                 </p>
               </div>
 
               <div>
-                <h2 className={`text-xl font-semibold mb-2 ${dmSans.className}`}>4. Data Security</h2>
-                <p className={`${poppins.className} font-light`}>
+                <h2 className="text-xl font-semibold mb-2">4. Data Security</h2>
+                <p className="font-normal">
                   I take reasonable measures to protect your information, but no website can guarantee 100% security. Please avoid sharing sensitive data until we establish a secure, direct collaboration.
                 </p>
               </div>
 
               <div>
-                <h2 className={`text-xl font-semibold mb-2 ${dmSans.className}`}>5. Cookies & Tracking</h2>
-                <p className={`${poppins.className} font-light`}>
-                  This Site may use cookies and analytics to improve functionality. You can disable cookies in your browser settings. For more details, see your browser’s help resources.
+                <h2 className="text-xl font-semibold mb-2">5. Cookies & Tracking</h2>
+                <p className="font-normal">
+                  This Site may use cookies and analytics to improve functionality. You can disable cookies in your browser settings. For more details, see your browser's help resources.
                 </p>
               </div>
 
               <div>
-                <h2 className={`text-xl font-semibold mb-2 ${dmSans.className}`}>6. Your Rights</h2>
-                <p className={`${poppins.className} font-light`}>
+                <h2 className="text-xl font-semibold mb-2">6. Your Rights</h2>
+                <p className="font-normal">
                   You may request to access, update, or delete your personal information by{' '}
                   <Link href="/#contact" className="underline decoration-blue-400 hover:text-blue-500 inline-flex items-center gap-1">
                     contacting me <ArrowUpRight className="h-4 w-4" />
@@ -107,9 +94,9 @@ export default function PrivacyPage() {
               </div>
 
               <div>
-                <h2 className={`text-xl font-semibold mb-2 ${dmSans.className}`}>7. Changes to This Policy</h2>
-                <p className={`${poppins.className} font-light`}>
-                  I may update this Privacy Policy from time to time. The “Effective Date” above reflects the latest version.
+                <h2 className="text-xl font-semibold mb-2">7. Changes to This Policy</h2>
+                <p className="font-normal">
+                  I may update this Privacy Policy from time to time. The "Effective Date" above reflects the latest version.
                 </p>
               </div>
             </section>
@@ -117,12 +104,12 @@ export default function PrivacyPage() {
         </Card>
 
         {/* Footer meta */}
-        <p className={`mt-6 text-xs text-zinc-500 ${poppins.className}`}>
+        <p className="mt-6 text-xs text-zinc-500">
           Last updated: August 22, 2025
         </p>
       </motion.div>
 
-      {/* Back to Top: fixed on small screens, inline on md+ */}
+      {/* Back to Top */}
       <button
         onClick={scrollToTop}
         className="fixed bottom-6 right-6 md:static md:mt-8 md:mx-auto md:block bg-blue-600 hover:bg-blue-500 text-white p-3 rounded-full shadow-lg transition"

@@ -4,22 +4,20 @@ import RibbonBar from '@/components/ui/ribbon-bar';
 import Technologies from '@/components/ui/technologies';
 import Footer from '@/components/ui/footer';
 import WhatIDo from '@/components/ui/whatido';
-import ContactSection2 from '@/components/ui/ContactSection2';
-import Vision from '@/components/ui/vision';
 import MetrixStatics from '@/components/ui/metrixstatics'
-import BannerCTA from '@/components/ui/bannercta';
+import ContactSection from '@/components/ui/contactSection';
+import RecentProjects from '@/components/ui/RecentProjects';
 
 export default function Home() {
     return (
         <main>
             <RibbonBar />
             <Hero />
+            <Technologies />    
             <MetrixStatics/>
-            <Technologies />
+            <RecentProjects/>
             <WhatIDo />
-            <Vision/>
-            <BannerCTA/>
-            <ContactSection2/>
+            <ContactSection/>
             <Footer />
         </main>
     );
