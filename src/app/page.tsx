@@ -6,6 +6,7 @@ import WhatIDo from '@/components/ui/whatido';
 import MetrixStatics from '@/components/ui/metrixstatics'
 import ContactSection from '@/components/ui/ContactSection';
 import RecentProjects from '@/components/ui/RecentProjects';
+import DesignTeamSection from '@/components/ui/Team';
 
 export default function Home() {
     return (    
@@ -16,6 +17,7 @@ export default function Home() {
             <MetrixStatics/>
             <RecentProjects/>
             <WhatIDo />
+            <DesignTeamSection />
             <ContactSection/>
             <Footer />
         </main>

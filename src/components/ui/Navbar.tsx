@@ -53,6 +53,7 @@ const Navbar = () => {
     { name: 'HOME', href: '/', isHash: false },
     { name: 'WORK', href: '/portfolio', isHash: false },
     { name: 'SERVICES', href: '/#services', isHash: true },
+    { name: 'TEAM', href: '/#team', isHash: true },
     { name: 'FOUNDER', href: '/about', isHash: false },
     { name: 'CONTACT', href: '/#contact', isHash: true, isContact: true },
   ]
